@@ -3,6 +3,7 @@ $(document).ready(function () {
     var gifArray = ["cat", "dog", "hamster", "duck", "mouse", "pig", "rabbit", "frog", "fox", "tiger", "bear", "lizard"];
 
     var gifBtnRow = $(".gif-btn-row");
+    var gifsGoHere = $(".gif-area-row");
 
 
     function generateBtns() {
@@ -17,7 +18,6 @@ $(document).ready(function () {
     generateBtns();
 
     var clickableBtn = $(".gif-btn");
-
     clickableBtn.on("click", function () {
         var gifValue = $(this).attr("data-gifvalue");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifValue + "&api_key=5lOCeJsh28VZ18MUoQMrmIXxQmHUEdrX"
@@ -27,7 +27,22 @@ $(document).ready(function () {
             method: "GET"
         }).then(function (response) {
             var result = response.data;
-            console.log(queryURL);
+
+            for(var i = 0; i < result.length; i++) {
+                // console.log(result[i]);
+                var gifSpan = $("<span>");
+                gifSpan.addClass("display-gif");
+
+                var rating = result[i].rating;
+
+                var actualGif = $("<img>");
+                actualGif.attr("src", result[i].images.fixed_height.url);
+
+                if(rating === "g") {
+                    gifSpan.prepend(actualGif);
+                    gifsGoHere.prepend(gifSpan);
+                }
+            }
         });
 
 
