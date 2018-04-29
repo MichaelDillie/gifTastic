@@ -50,7 +50,10 @@ $(document).ready(function () {
                 var rating = result[i].rating;
 
                 var actualGif = $("<img>");
-                actualGif.attr("src", result[i].images.fixed_height.url);
+                actualGif.attr("src", result[i].images.fixed_height_still.url);
+                actualGif.attr("data-still", result[i].images.fixed_height_still.url);
+                actualGif.attr("data-animate", result[i].images.fixed_height.url);
+                actualGif.attr("data-state", "still");
 
                 var p = $("<p>");
                 p.addClass("rating");
@@ -63,9 +66,9 @@ $(document).ready(function () {
                 }
             }
         });
-
-
     }
+
+
 
 
 
