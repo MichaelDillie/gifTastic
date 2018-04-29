@@ -20,7 +20,9 @@ $(document).ready(function () {
     }
     generateBtns();
 
+    // Will add the button that the user has added
     addNewGifBtn.on("click", function(event) {
+        // Checks if input is an empty string
         if(newAnimal.val() === "") {
             (event).preventDefault();
             console.log("No text input");
@@ -34,9 +36,10 @@ $(document).ready(function () {
     });
 
     var clickableBtn = $(".gif-btn");
-
+    // When the gif button is clicked this will run the display funciton
     $(document).on("click", ".gif-btn", displpay);
 
+    // Creates the div that will hold GIF and its info
     function displpay() {
         gifsGoHere.empty();
         var gifValue = $(this).attr("data-gifvalue");
@@ -49,7 +52,6 @@ $(document).ready(function () {
             var result = response.data;
 
             for(var i = 0; i < result.length; i++) {
-                // console.log(result[i]);
                 var gifDiv = $("<div>");
                 gifDiv.addClass("display-gif");
 
@@ -87,6 +89,8 @@ $(document).ready(function () {
             }
         });
     }
+    // Checks if GIF is still or animated
+    // Will change to amimated if data-state is still
     $(document).on("click", ".actual-gif", function() {
         var state = $(this).attr("data-state");
         if(state === "still") {
@@ -99,6 +103,7 @@ $(document).ready(function () {
             $(this).attr("data-state", "still");
           }
     });
+    // The broken ass download button
     $(document).on("click", ".download-btn", function() {
         console.log("do not get this download BS");
         console.log($(this).attr("data-url"));
