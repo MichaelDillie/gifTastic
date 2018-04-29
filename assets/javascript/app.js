@@ -27,7 +27,6 @@ $(document).ready(function () {
         newAnimal.val("");
     });
 
-    //  This will handel the click on GIF name (When clicked this funciton will add gifs to DOM and display them)
     var clickableBtn = $(".gif-btn");
 
     $(document).on("click", ".gif-btn", displpay);
@@ -35,7 +34,7 @@ $(document).ready(function () {
     function displpay() {
         gifsGoHere.empty();
         var gifValue = $(this).attr("data-gifvalue");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifValue + "&api_key=5lOCeJsh28VZ18MUoQMrmIXxQmHUEdrX"
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifValue + "&api_key=5lOCeJsh28VZ18MUoQMrmIXxQmHUEdrX&limit=10"
 
         $.ajax({
             url: queryURL,
@@ -53,8 +52,13 @@ $(document).ready(function () {
                 var actualGif = $("<img>");
                 actualGif.attr("src", result[i].images.fixed_height.url);
 
-                if(rating === "g") {
+                var p = $("<p>");
+                p.addClass("rating");
+                p.text("Rating: " + rating.toUpperCase());
+
+                if(rating === "g" || rating === "pg") {
                     gifSpan.prepend(actualGif);
+                    gifSpan.prepend(p);
                     gifsGoHere.prepend(gifSpan);
                 }
             }
