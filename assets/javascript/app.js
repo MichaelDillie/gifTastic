@@ -50,6 +50,7 @@ $(document).ready(function () {
                 var rating = result[i].rating;
 
                 var actualGif = $("<img>");
+                actualGif.addClass("actual-gif");
                 actualGif.attr("src", result[i].images.fixed_height_still.url);
                 actualGif.attr("data-still", result[i].images.fixed_height_still.url);
                 actualGif.attr("data-animate", result[i].images.fixed_height.url);
@@ -67,14 +68,16 @@ $(document).ready(function () {
             }
         });
     }
-    $(document).on("click", ".display-gif", function() {
-        console.log("clicked")
-        var state = $(".display-gif").attr("data-state");
+    $(document).on("click", ".actual-gif", function() {
+        console.log("clicked");
+        var state = $(".actual-gif").attr("data-state");
         if(state === "still") {
+            console.log("it is still");
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
           }
           else {
+            console.log("not still");
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
           }
