@@ -24,6 +24,7 @@ $(document).ready(function () {
         gifArray.push(newAnimal.val().trim());
         gifBtnRow.empty();
         generateBtns();
+        newAnimal.val("");
     });
 
     //  This will handel the click on GIF name (When clicked this funciton will add gifs to DOM and display them)
