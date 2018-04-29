@@ -6,6 +6,7 @@ $(document).ready(function () {
     var gifsGoHere = $(".gif-area-row");
     var newAnimal = $("#new-animal");
     var addNewGifBtn = $("#add-new-gif-btn");
+    var downloadBtn = $(".download-btn");
 
     // This function will generate all btns new and old
     function generateBtns() {
@@ -44,8 +45,8 @@ $(document).ready(function () {
 
             for(var i = 0; i < result.length; i++) {
                 // console.log(result[i]);
-                var gifSpan = $("<span>");
-                gifSpan.addClass("display-gif");
+                var gifDiv = $("<div>");
+                gifDiv.addClass("display-gif");
 
                 var rating = result[i].rating;
 
@@ -56,36 +57,37 @@ $(document).ready(function () {
                 actualGif.attr("data-animate", result[i].images.fixed_height.url);
                 actualGif.attr("data-state", "still");
 
+                var download = $("<a>");
+                download.addClass("waves-effect waves-light btn-small download-btn");
+                download.attr("data-url", result[i].images.fixed_height.url);
+                download.text("download");
+
                 var p = $("<p>");
                 p.addClass("rating");
                 p.text("Rating: " + rating.toUpperCase());
 
                 if(rating === "g" || rating === "pg") {
-                    gifSpan.prepend(actualGif);
-                    gifSpan.prepend(p);
-                    gifsGoHere.prepend(gifSpan);
+                    gifDiv.prepend(actualGif);
+                    gifDiv.prepend(p);
+                    gifDiv.append(download);
+                    gifsGoHere.prepend(gifDiv);
                 }
             }
         });
     }
     $(document).on("click", ".actual-gif", function() {
-        console.log("clicked");
-        var state = $(".actual-gif").attr("data-state");
+        var state = $(this).attr("data-state");
         if(state === "still") {
-            console.log("it is still");
+            console.log($(this).attr("data-animate"));
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
           }
           else {
-            console.log("not still");
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
           }
     });
-
-
-
-
-
-
+    $(document).on("click", ".download-btn", function() {
+        console.log($(this).attr("data-url"));
+    });
 });

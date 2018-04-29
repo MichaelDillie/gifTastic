@@ -1,6 +1,11 @@
 .gif-btn {
     margin: 10px 10px;
 }
+.display-gif {
+    margin: 20px 10px;
+    float: left;
+}
 .display-gif img {
-    margin: 10px 10px;
+    margin: 10px 0px;
+    display: block;
 }
