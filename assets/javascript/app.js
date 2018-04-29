@@ -15,7 +15,6 @@ $(document).ready(function () {
             gifBtn.text(gifArray[i]);
             gifBtn.attr("data-gifvalue", gifArray[i]);
             gifBtnRow.append(gifBtn);
-            console.log(gifBtn);
         }
     }
     generateBtns();
@@ -23,13 +22,16 @@ $(document).ready(function () {
     addNewGifBtn.on("click", function(event) {
         event.preventDefault();
         gifArray.push(newAnimal.val().trim());
-        // gifBtnRow.empty();
+        gifBtnRow.empty();
         generateBtns();
     });
 
     //  This will handel the click on GIF name (When clicked this funciton will add gifs to DOM and display them)
     var clickableBtn = $(".gif-btn");
-    clickableBtn.on("click", function () {
+
+    $(document).on("click", ".gif-btn", displpay);
+
+    function displpay() {
         var gifValue = $(this).attr("data-gifvalue");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifValue + "&api_key=5lOCeJsh28VZ18MUoQMrmIXxQmHUEdrX"
 
@@ -57,7 +59,7 @@ $(document).ready(function () {
         });
 
 
-    });
+    }
 
 
 
