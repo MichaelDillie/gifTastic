@@ -21,11 +21,16 @@ $(document).ready(function () {
     generateBtns();
 
     addNewGifBtn.on("click", function(event) {
-        event.preventDefault();
-        gifArray.push(newAnimal.val().trim());
-        gifBtnRow.empty();
-        generateBtns();
-        newAnimal.val("");
+        if(newAnimal.val() === "") {
+            (event).preventDefault();
+            console.log("No text input");
+        } else {
+            event.preventDefault();
+            gifArray.push(newAnimal.val().trim());
+            gifBtnRow.empty();
+            generateBtns();
+            newAnimal.val("");
+        }
     });
 
     var clickableBtn = $(".gif-btn");
@@ -95,8 +100,9 @@ $(document).ready(function () {
           }
     });
     $(document).on("click", ".download-btn", function() {
+        console.log("do not get this download BS");
         console.log($(this).attr("data-url"));
         console.log($(this).attr("data-title"));
-        // $(this).attr("data-url").download($(this).attr("data-title"));
+        // $(this).attr("data-url").download = $(this).attr("data-title");
     });
 });
