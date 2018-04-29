@@ -33,6 +33,7 @@ $(document).ready(function () {
     $(document).on("click", ".gif-btn", displpay);
 
     function displpay() {
+        gifsGoHere.empty();
         var gifValue = $(this).attr("data-gifvalue");
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifValue + "&api_key=5lOCeJsh28VZ18MUoQMrmIXxQmHUEdrX"
 
