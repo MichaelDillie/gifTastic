@@ -55,20 +55,27 @@ $(document).ready(function () {
                 actualGif.attr("src", result[i].images.fixed_height_still.url);
                 actualGif.attr("data-still", result[i].images.fixed_height_still.url);
                 actualGif.attr("data-animate", result[i].images.fixed_height.url);
+                actualGif.attr("data-title", result[i].title);
                 actualGif.attr("data-state", "still");
 
                 var download = $("<a>");
                 download.addClass("waves-effect waves-light btn-small download-btn");
-                download.attr("data-url", result[i].images.fixed_height.url);
+                download.attr("data-url", result[i].images.fixed_height.mp4);
+                download.attr("data-title", result[i].title);
                 download.text("download");
 
                 var p = $("<p>");
                 p.addClass("rating");
                 p.text("Rating: " + rating.toUpperCase());
 
+                var title = $("<p>");
+                title.addClass("gif-title");
+                title.text(result[i].title.toUpperCase());
+
                 if(rating === "g" || rating === "pg") {
                     gifDiv.prepend(actualGif);
                     gifDiv.prepend(p);
+                    gifDiv.prepend(title);
                     gifDiv.append(download);
                     gifsGoHere.prepend(gifDiv);
                 }
@@ -89,5 +96,7 @@ $(document).ready(function () {
     });
     $(document).on("click", ".download-btn", function() {
         console.log($(this).attr("data-url"));
+        console.log($(this).attr("data-title"));
+        // $(this).attr("data-url").download($(this).attr("data-title"));
     });
 });

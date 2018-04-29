@@ -1,5 +1,23 @@
+body {
+    background: #121212;
+    color: #fff;
+}
 .gif-btn {
     margin: 10px 10px;
+    background: #7629FF;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+}
+#add-new-gif-btn {
+    background: #7629FF;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+}
+.download-btn {
+    background: #7629FF;
+    font-family: 'Tajawal', sans-serif;
+    font-weight: 700;
+    margin: 10px 0px;
 }
 .display-gif {
     margin: 20px 10px;
@@ -8,4 +26,16 @@
 .display-gif img {
     margin: 10px 0px;
     display: block;
+}
+input {
+    color: #fff;
+    font-family: 'Tajawal', sans-serif;
+}
+.gif-title {
+    font-family: 'Black Han Sans', sans-serif;
+    margin: 10px 0px;
+}
+.rating {
+    font-family: 'Tajawal', sans-serif;
+    margin: 10px 0px;
 }
