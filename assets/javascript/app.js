@@ -88,19 +88,26 @@ $(document).ready(function () {
                 var favoriteWrapper = $("<span>");
                 favoriteWrapper.addClass("favorite-wrapper");
 
-                if(favorited) {
-                    var favorite = $("<i>");
-                    favorite.addClass("fas fa-heart favorite-heart-f");
-                } else {
-                    var favorite = $("<i>");
-                    favorite.addClass("far fa-heart favorite-heart-uf");
-                }
+
+                var favoriteTrue = $("<i>");
+                favoriteTrue.addClass("fas fa-heart favorite-heart-f");
+                favoriteTrue.attr("data-favoritestate", "true");
+
+                var favoriteFalse = $("<i>");
+                favoriteFalse.addClass("far fa-heart favorite-heart-uf");
+                favoriteFalse.attr("data-favoritestate", "false");
 
                 var favoriteTag = $("<p>");
                 favoriteTag.addClass("favorite-tag");
                 favoriteTag.text("FAVORITE");
 
-                favoriteWrapper.append(favorite);
+                if(favoriteFalse.attr("data-favoritestate") === "true") {
+                    console.log("favorite");
+                } else {
+                    console.log("Not");
+                }
+
+                favoriteWrapper.append(favoriteFalse);
                 favoriteWrapper.append(favoriteTag);
 
                 if(rating === "g" || rating === "pg") {
@@ -118,7 +125,7 @@ $(document).ready(function () {
     $(document).on("click", ".favorite-heart-uf", function() {
         console.log("Clicked");
         var fav = $(this).removeClass("far fa-heart favorite-heart-uf").addClass("fas fa-heart favorite-heart-f");
-        favorited = true;
+        $(this).attr("data-favoritestate", "true");
     });
     // Checks if GIF is still or animated
     // Will change to amimated if data-state is still
