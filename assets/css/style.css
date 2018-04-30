@@ -20,7 +20,7 @@ body {
     margin: 10px 0px;
 }
 .display-gif {
-    margin: 20px 10px;
+    margin: 20px 20px;
     float: left;
 }
 .display-gif img {
@@ -45,6 +45,20 @@ input {
     margin: 10px 0px;
     font-weight: 700;
 }
-.favorite-heart {
-    margin-left: 30px;
+.favorite-heart-uf {
+    margin-left: 50px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.favorite-heart-f {
+    margin-left: 50px;
+    margin-right: 5px;
+    color: #FF4D57;
+    cursor: pointer;
+}
+.favorite-tag {
+    text-align: end;
+    font-family: 'Tajawal', sans-serif;
+    display: inline;
+    cursor: pointer;
 }

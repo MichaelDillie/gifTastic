@@ -8,6 +8,8 @@ $(document).ready(function () {
     var addNewGifBtn = $("#add-new-gif-btn");
     var downloadBtn = $(".download-btn");
 
+    var favorited = false;
+
     // This function will generate all btns new and old
     function generateBtns() {
         for (var i = 0; i < gifArray.length; i++) {
@@ -83,12 +85,23 @@ $(document).ready(function () {
                 userName.addClass("user-name");
                 userName.text(result[i].username);
 
-                var favorite = $("<i>");
-                favorite.addClass("far fa-heart favorite-heart");
+                var favoriteWrapper = $("<span>");
+                favoriteWrapper.addClass("favorite-wrapper");
+
+                if(favorited) {
+                    var favorite = $("<i>");
+                    favorite.addClass("fas fa-heart favorite-heart-f");
+                } else {
+                    var favorite = $("<i>");
+                    favorite.addClass("far fa-heart favorite-heart-uf");
+                }
 
                 var favoriteTag = $("<p>");
                 favoriteTag.addClass("favorite-tag");
-                favoriteTag.text("favorite");
+                favoriteTag.text("FAVORITE");
+
+                favoriteWrapper.append(favorite);
+                favoriteWrapper.append(favoriteTag);
 
                 if(rating === "g" || rating === "pg") {
                     gifDiv.prepend(actualGif);
@@ -96,13 +109,17 @@ $(document).ready(function () {
                     gifDiv.prepend(userName);
                     gifDiv.prepend(title);
                     gifDiv.append(download);
-                    gifDiv.append(favorite);
-                    gifDiv.append(favoriteTag);
+                    gifDiv.append(favoriteWrapper);
                     gifsGoHere.prepend(gifDiv);
                 }
             }
         });
     }
+    $(document).on("click", ".favorite-heart-uf", function() {
+        console.log("Clicked");
+        var fav = $(this).removeClass("far fa-heart favorite-heart-uf").addClass("fas fa-heart favorite-heart-f");
+        favorited = true;
+    });
     // Checks if GIF is still or animated
     // Will change to amimated if data-state is still
     $(document).on("click", ".actual-gif", function() {
