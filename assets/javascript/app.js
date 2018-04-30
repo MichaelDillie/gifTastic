@@ -83,12 +83,21 @@ $(document).ready(function () {
                 userName.addClass("user-name");
                 userName.text(result[i].username);
 
+                var favorite = $("<i>");
+                favorite.addClass("far fa-heart favorite-heart");
+
+                var favoriteTag = $("<p>");
+                favoriteTag.addClass("favorite-tag");
+                favoriteTag.text("favorite");
+
                 if(rating === "g" || rating === "pg") {
                     gifDiv.prepend(actualGif);
                     gifDiv.prepend(p);
                     gifDiv.prepend(userName);
                     gifDiv.prepend(title);
                     gifDiv.append(download);
+                    gifDiv.append(favorite);
+                    gifDiv.append(favoriteTag);
                     gifsGoHere.prepend(gifDiv);
                 }
             }
@@ -99,7 +108,6 @@ $(document).ready(function () {
     $(document).on("click", ".actual-gif", function() {
         var state = $(this).attr("data-state");
         if(state === "still") {
-            console.log($(this).attr("data-animate"));
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
           }
@@ -111,8 +119,8 @@ $(document).ready(function () {
     // The broken ass download button
     $(document).on("click", ".download-btn", function() {
         console.log("do not get this download BS");
-        console.log($(this).attr("data-url"));
-        console.log($(this).attr("data-title"));
+        console.log("File " + $(this).attr("data-url"));
+        console.log("Title of file " + $(this).attr("data-title"));
         // download($(this).attr("data-url"), $(this).attr("data-title"), "video/mp4");
     });
 });
