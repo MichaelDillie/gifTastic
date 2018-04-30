@@ -40,3 +40,8 @@ input {
     font-family: 'Tajawal', sans-serif;
     margin: 10px 0px;
 }
+.user-name {
+    font-family: 'Tajawal', sans-serif;
+    margin: 10px 0px;
+    font-weight: 700;
+}

@@ -79,9 +79,14 @@ $(document).ready(function () {
                 title.addClass("gif-title");
                 title.text(result[i].title.toUpperCase());
 
+                var userName = $("<p>");
+                userName.addClass("user-name");
+                userName.text(result[i].username);
+
                 if(rating === "g" || rating === "pg") {
                     gifDiv.prepend(actualGif);
                     gifDiv.prepend(p);
+                    gifDiv.prepend(userName);
                     gifDiv.prepend(title);
                     gifDiv.append(download);
                     gifsGoHere.prepend(gifDiv);
@@ -108,6 +113,6 @@ $(document).ready(function () {
         console.log("do not get this download BS");
         console.log($(this).attr("data-url"));
         console.log($(this).attr("data-title"));
-        // $(this).attr("data-url").download = $(this).attr("data-title");
+        // download($(this).attr("data-url"), $(this).attr("data-title"), "video/mp4");
     });
 });
