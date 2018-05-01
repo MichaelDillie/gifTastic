@@ -88,7 +88,6 @@ $(document).ready(function () {
                 var favoriteWrapper = $("<span>");
                 favoriteWrapper.addClass("favorite-wrapper");
 
-
                 var favoriteTrue = $("<i>");
                 favoriteTrue.addClass("fas fa-heart favorite-heart-f");
                 favoriteTrue.attr("data-favoritestate", "true");
@@ -101,6 +100,8 @@ $(document).ready(function () {
                 favoriteTag.addClass("favorite-tag");
                 favoriteTag.text("FAVORITE");
 
+
+                // TESTING ***********
                 if(favoriteFalse.attr("data-favoritestate") === "true") {
                     console.log("favorite");
                 } else {
@@ -122,10 +123,16 @@ $(document).ready(function () {
             }
         });
     }
-    $(document).on("click", ".favorite-heart-uf", function() {
+    $(document).on("click", ".fa-heart", function() {
         console.log("Clicked");
-        var fav = $(this).removeClass("far fa-heart favorite-heart-uf").addClass("fas fa-heart favorite-heart-f");
-        $(this).attr("data-favoritestate", "true");
+        var favoriteState = $(this).attr("data-favoritestate");
+        if(favoriteState === "false") {
+            $(this).removeClass("far fa-heart favorite-heart-uf").addClass("fas fa-heart favorite-heart-f");
+            $(this).attr("data-favoritestate", "true");
+        } else {
+            $(this).removeClass("fas fa-heart favorite-heart-f").addClass("far fa-heart favorite-heart-uf");
+            $(this).attr("data-favoritestate", "false");
+        }
     });
     // Checks if GIF is still or animated
     // Will change to amimated if data-state is still
